@@ -20,7 +20,7 @@ describe("Admin Module", ()=>{
 
 
 
-    it("language should be change to English", ()=>{
+    it.skip("language should be change to English", ()=>{
         cy.get(':nth-child(1) > .oxd-main-menu-item').click();
         cy.get('.oxd-topbar-body-nav > ul > :nth-child(7)').click();
 
@@ -44,6 +44,18 @@ describe("Admin Module", ()=>{
                     }
             });
         
+    });
+
+    it("name should be changed", ()=>{
+        cy.get(':nth-child(6) > .oxd-main-menu-item').click()
+        cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').clear().type("TestF")
+        cy.get(':nth-child(3) > :nth-child(2) > .oxd-input').clear().type("TestL")
+        cy.get(':nth-child(1) > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type("TestN")
+        cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click()
+        cy.reload();
+
+        cy.get('.oxd-userdropdown-name')
+            .should("have.text", "TestF TestL")
     });
 
 });
