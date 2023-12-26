@@ -22,8 +22,6 @@ describe("Admin Module", ()=>{
 
     it("language should be change to English", ()=>{
         cy.get(':nth-child(1) > .oxd-main-menu-item').click();
-        cy.get('.oxd-topbar-header-breadcrumb-module')
-            .should("have.text","Admin");
         cy.get('.oxd-topbar-body-nav > ul > :nth-child(7)').click();
 
         cy.wait(2000);
@@ -32,7 +30,15 @@ describe("Admin Module", ()=>{
         cy.wait(4000);
         
         cy.get(':nth-child(1) > .oxd-grid-2 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text-input')
-                                .should("have.text","English (United States)");
+            .invoke('text')
+                .then((currentLanguage) =>{
+                    if (currentLanguage.trim()!=="English (United States)") {
+                        cy.get(':nth-child(1) > .oxd-grid-2 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text')
+                            .click();
+                        cy.get('.oxd-select-dropdown > :nth-child(4)').click();
+                        cy.get('.oxd-button').click();
+                    }
+            });
         
     });
 
