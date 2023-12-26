@@ -38,6 +38,10 @@ describe("Admin Module", ()=>{
                         cy.get('.oxd-select-dropdown > :nth-child(4)').click();
                         cy.get('.oxd-button').click();
                     }
+                    else{
+                        cy.get(':nth-child(1) > .oxd-grid-2 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text-input')
+                            .should("have.text","English (United States)");
+                    }
             });
         
     });
