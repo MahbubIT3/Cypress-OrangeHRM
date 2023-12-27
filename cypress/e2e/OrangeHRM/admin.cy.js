@@ -16,7 +16,7 @@ describe("Admin Module", ()=>{
 
 
 
-    it.skip("language should be change to English", ()=>{
+    it("language should be change to English", ()=>{
         cy.get(':nth-child(1) > .oxd-main-menu-item').click();
         cy.get('.oxd-topbar-body-nav > ul > :nth-child(7)').click();
 
