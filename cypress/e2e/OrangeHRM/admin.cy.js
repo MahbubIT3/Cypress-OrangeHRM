@@ -30,7 +30,8 @@ describe("Admin Module", ()=>{
                     if (currentLanguage.trim()!=="English (United States)") {
                         cy.get(':nth-child(1) > .oxd-grid-2 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text')
                             .click();
-                        cy.get('.oxd-select-dropdown > :nth-child(4)').click();
+                        cy.get('.oxd-select-dropdown > :nth-child(4)')
+                            .click();
                         cy.get('.oxd-button').click();
                     }
                     else{
@@ -45,10 +46,17 @@ describe("Admin Module", ()=>{
         cy.log("Test case 2 is started")
         cy.wait(4000)
         cy.get(':nth-child(6) > .oxd-main-menu-item').click()
-        cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').clear().type("TestF")
-        cy.get(':nth-child(3) > :nth-child(2) > .oxd-input').clear().type("TestL")
-        cy.get(':nth-child(1) > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type("TestN")
-        cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click()
+        cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input')
+            .clear()
+            .type("TestF")
+        cy.get(':nth-child(3) > :nth-child(2) > .oxd-input')
+            .clear()
+            .type("TestL")
+        cy.get(':nth-child(1) > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input')
+            .clear()
+            .type("TestN")
+        cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button')
+            .click()
         cy.wait(4000)
         cy.reload();
         cy.get('.oxd-userdropdown-name')
@@ -59,13 +67,19 @@ describe("Admin Module", ()=>{
 
     it.only("attachment should be uploaded",()=>{
         cy.log("Test case 3 is started")
-        cy.get(':nth-child(6) > .oxd-main-menu-item').click()
+        cy.get(':nth-child(6) > .oxd-main-menu-item')
+            .click()
         cy.scrollTo(0,500)
         cy.get('.orangehrm-action-header > .oxd-button')
             .click()
         cy.wait(4000)
-        cy.get('.oxd-file-input').selectFile("cypress/fixtures/sample.txt", {force: true})
-        cy.get("h6").contains("Add Attachment").siblings("form").find("div>button[type='submit']").click()
+        cy.get('.oxd-file-input')
+            .selectFile("cypress/fixtures/sample.txt", {force: true})
+        cy.get("h6")
+            .contains("Add Attachment")
+            .siblings("form")
+            .find("div>button[type='submit']")
+            .click()
     });
 
 });
