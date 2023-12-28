@@ -75,11 +75,27 @@ describe("Admin Module", ()=>{
         cy.wait(4000)
         cy.get('.oxd-file-input')
             .selectFile("cypress/fixtures/sample.txt", {force: true})
+        
+        cy.get('.oxd-textarea')
+            .type("This is sample file")
         cy.get("h6")
             .contains("Add Attachment")
             .siblings("form")
             .find("div>button[type='submit']")
             .click()
+        cy.get('.oxd-table-row > :nth-child(2) > div')
+            .should("have.text","sample.txt")
+        cy.get('.oxd-table-row > :nth-child(3) > div')
+            .should("have.text","This is sample file")
+        cy.wait(2000)
+        cy.get('.oxd-table-cell-actions > :nth-child(3)')
+            .click()
+        cy.get('.oxd-table-cell-actions > :nth-child(2)')
+            .click()
+        cy.get('.oxd-button--label-danger')
+            .click()
+        
+        
     });
 
 });
