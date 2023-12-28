@@ -39,27 +39,29 @@ describe("Login Test", ()=>{
   
   describe("Logout Test", ()=>{
   it("User should be logged out", ()=>{
-      cy.visit("https://opensource-demo.orangehrmlive.com");
-  
-      cy.get('[name="username"]')
-          .type("Admin");
-  
-      cy.get('[name="password"]')
-          .type("admin123");
-  
-      cy.get('.oxd-button')
-          .click();
-  
-      cy.wait(2000);
-  
-      cy.get('.oxd-userdropdown-tab')
-          .click();
-  
-      cy.contains('Logout')
-          .click();
-  
-      cy.url()
-          .should("equal","https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    cy.visit("https://opensource-demo.orangehrmlive.com");
+
+    cy.get('[name="username"]')
+        .type("Admin");
+
+    cy.get('[name="password"]')
+        .type("admin123");
+
+    cy.get('.oxd-button')
+        .click();
+
+    cy.wait(2000);
+
+    cy.get('.oxd-userdropdown-tab')
+        .click();
+
+    cy.contains('Logout')
+        .click();
+
+    cy.wait(4000);
+
+    cy.url()
+        .should("equal","https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
   });
   
   });
