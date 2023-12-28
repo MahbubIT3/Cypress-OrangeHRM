@@ -65,37 +65,61 @@ describe("Admin Module", ()=>{
     
     });
 
-    it.only("attachment should be uploaded",()=>{
+    it.only("attachment should be uploaded, edited and deleted",()=>{
         cy.log("Test case 3 is started")
-        cy.get(':nth-child(6) > .oxd-main-menu-item')
+        cy.get(':nth-child(6) > .oxd-main-menu-item')   //click on My Info
             .click()
         cy.scrollTo(0,500)
-        cy.get('.orangehrm-action-header > .oxd-button')
+        cy.get('.orangehrm-action-header > .oxd-button')    //Click on Add Attachment
             .click()
         cy.wait(4000)
         cy.get('.oxd-file-input')
-            .selectFile("cypress/fixtures/sample.txt", {force: true})
+            .selectFile("cypress/fixtures/sample.txt", {force: true}) //Upload an Attachment
         
         cy.get('.oxd-textarea')
-            .type("This is sample file")
-        cy.get("h6")
+            .type("This is sample file")    //Comment about the attachment
+        cy.get("h6")                        //Save the attachment
             .contains("Add Attachment")
             .siblings("form")
             .find("div>button[type='submit']")
             .click()
-        cy.get('.oxd-table-row > :nth-child(2) > div')
+        cy.get('.oxd-table-row > :nth-child(2) > div')  //Check the file name in table
             .should("have.text","sample.txt")
-        cy.get('.oxd-table-row > :nth-child(3) > div')
+        cy.get('.oxd-table-row > :nth-child(3) > div')  //Check the comment about the file
             .should("have.text","This is sample file")
         cy.wait(2000)
-        cy.get('.oxd-table-cell-actions > :nth-child(3)')
+        cy.get('.oxd-table-cell-actions > :nth-child(3)')   //Download the attachment
             .click()
-        cy.get('.oxd-table-cell-actions > :nth-child(2)')
+        //=================================//
+        cy.get('.oxd-table-cell-actions > :nth-child(1)').click()   //Edit Attachment
+        cy.get('div.orangehrm-card-container > form > div:nth-child(2) > div:nth-child(1) label').should("have.text", "Replace With")
+        cy.get('.oxd-file-div')    //Click on Add Attachment
             .click()
-        cy.get('.oxd-button--label-danger')
+        cy.wait(4000)
+        cy.get('.oxd-file-input')
+            .selectFile("cypress/fixtures/sample2.txt", {force: true}) //Upload an Attachment
+        cy.get('.oxd-textarea')
+            .clear()
+            .type("This is replaced sample 2 file")    //Comment about the attachment
+        cy.get("h6")                        //Save the attachment
+            .contains("Edit Attachment")
+            .siblings("form")
+            .find("div>button[type='submit']")
             .click()
-        
-        
+        cy.get('.oxd-table-cell-actions > :nth-child(3)')   //Download the attachment
+            .click()
+        cy.readFile('cypress/downloads/sample.txt').then((file1Content) => {    //Comparing two files
+            cy.readFile('cypress/downloads/sample2.txt').then((file2Content) => {
+                  expect(file1Content).to.not.equal(file2Content);
+                });
+              });
+        cy.get('.oxd-table-cell-actions > :nth-child(2)')   //Click on the delete icon to delete the uploaded attachment
+            .click()
+        cy.get('.oxd-button--label-danger')                 //Confirm Delete
+            .click()
+        cy.wait(4000)
+        cy.get('div>span.oxd-text--span')
+            .should("have.text", "No Records Found")   //Assert no records found
     });
 
 });
