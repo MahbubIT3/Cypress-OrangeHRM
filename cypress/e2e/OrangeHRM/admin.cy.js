@@ -65,7 +65,7 @@ describe("Admin Module", ()=>{
     
     });
 
-    it.only("attachment should be uploaded, edited and deleted",()=>{
+    it.only("attachment should be uploaded, edited, downloaded and deleted",()=>{
         cy.log("Test case 3 is started")
         cy.get(':nth-child(6) > .oxd-main-menu-item')   //click on My Info
             .click()
