@@ -129,7 +129,7 @@ describe("Admin Module", ()=>{
             .click()
         cy.scrollTo(0,200)
         cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon')
-            .click()
+            .click()    //Open calendar
         cy.get('.oxd-calendar-selector-month')
             .click()
         cy.get('.oxd-calendar-dropdown > :nth-child(1)')
