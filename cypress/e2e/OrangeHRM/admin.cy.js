@@ -143,7 +143,7 @@ describe("Admin Module", ()=>{
         cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button')
             .click()    //Save data
         
-        //Assertion date of birth
+        //Assertion for date of birth
         cy.scrollTo(0,200)
         cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon')
             .click()
