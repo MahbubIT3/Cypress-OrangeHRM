@@ -65,7 +65,7 @@ describe("Admin Module", ()=>{
     
     });
 
-    it.only("attachment should be uploaded, edited, downloaded and deleted",()=>{
+    it("attachment should be uploaded, edited, downloaded and deleted",()=>{
         cy.log("Test case 3 is started")
         cy.get(':nth-child(6) > .oxd-main-menu-item')   //click on My Info
             .click()
@@ -92,7 +92,8 @@ describe("Admin Module", ()=>{
             .click()
         //=================================//
         cy.get('.oxd-table-cell-actions > :nth-child(1)').click()   //Edit Attachment
-        cy.get('div.orangehrm-card-container > form > div:nth-child(2) > div:nth-child(1) label').should("have.text", "Replace With")
+        cy.get('div.orangehrm-card-container > form > div:nth-child(2) > div:nth-child(1) label')
+            .should("have.text", "Replace With")
         cy.get('.oxd-file-div')    //Click on Add Attachment
             .click()
         cy.wait(4000)
@@ -120,6 +121,39 @@ describe("Admin Module", ()=>{
         cy.wait(4000)
         cy.get('div>span.oxd-text--span')
             .should("have.text", "No Records Found")   //Assert no records found
+    });
+
+    it("date of birth should be updated", ()=>{
+        cy.log("Test case 3 is started")
+        cy.get(':nth-child(6) > .oxd-main-menu-item')   //click on My Info
+            .click()
+        cy.scrollTo(0,200)
+        cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon')
+            .click()
+        cy.get('.oxd-calendar-selector-month')
+            .click()
+        cy.get('.oxd-calendar-dropdown > :nth-child(1)')
+            .click()    //Month January Selected
+        cy.get('.oxd-calendar-selector-year')
+            .click()
+        cy.contains('1995')
+            .click()    //Year 1995 Selected
+        cy.get(':nth-child(7) > .oxd-calendar-date')
+            .click()    //Date 7 Selected
+        cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button')
+            .click()    //Save data
+        
+        //Assertion date of birth
+        cy.scrollTo(0,200)
+        cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon')
+            .click()
+        cy.get('.oxd-calendar-selector-month-selected > .oxd-text')
+            .should("have.text","January")
+        cy.get('.oxd-calendar-selector-year-selected > .oxd-text')
+            .should("have.text","1995")
+        cy.get('.--selected')
+            .should("have.text","7")
+        
     });
 
 });
