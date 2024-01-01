@@ -5,3 +5,5 @@ In this project, I automate the <b>OrangeHRM</b> website with <b>Cypress</b> for
 I do my work step by step. I have faced many issues during this project, and happy to handle them professionally.
 ## Details of the Project
 You will find all my work steps from beginning to ending [here](https://tattered-brownie-52b.notion.site/2-Cypress-5991f70bfbaf4dc783023a27db39cd40). Please visit the site.
+## Test Case Documentation
+Find the test case documentation [here](https://docs.google.com/spreadsheets/d/1H8JygqoZGd1vK-qBCSZ0lTMPLiBOFX6R2e6PhegVjVo/edit?usp=sharing).
