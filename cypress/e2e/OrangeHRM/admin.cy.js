@@ -1,7 +1,6 @@
 ///<reference types = "cypress"/>
 import { LoginPage } from "../../Pages/LoginPage"
 const loginPage = new LoginPage()
-
 beforeEach(()=>{
     cy.log("Login test is started...")
     cy.viewport(1536, 750);
@@ -157,4 +156,62 @@ describe("My Info Module", ()=>{
         
     });
 
+});
+
+describe("PIM Module",()=>{
+    let employeeId;
+    it.only("Add an Employee",()=>{
+        cy.get(':nth-child(2) > .oxd-main-menu-item')
+            .click()    // Go to PIM
+        cy.get('.oxd-topbar-body-nav > ul > :nth-child(3)')
+            .click()    // Click on Add Employee in top Navbar
+        cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input')
+            .type("Ethan")  //Enter First Name
+        cy.get(':nth-child(2) > :nth-child(2) > .oxd-input')
+            .type("James")  // Enter Middle Name
+        cy.get(':nth-child(3) > :nth-child(2) > .oxd-input')
+            .type("Parker") // Enter Last Name
+
+        cy.get('.orangehrm-full-width-grid > div > div > div:nth-child(2) > input').invoke('val').then(value=>{
+            employeeId = value;
+            cy.log(`Employee ID: ${employeeId}`);
+            cy.wrap(employeeId).as('employeeId');
+        });
+        
+        cy.get('.oxd-switch-input')
+            .click()    // Toggle for Create Login Details
+        cy.get(':nth-child(4) > .oxd-grid-2 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input')
+            .type("Ethan123")   // Enter Username
+        cy.get('.user-password-cell > .oxd-input-group > :nth-child(2) > .oxd-input')
+            .type("Sunbeam1")   // Enter Password
+        cy.get('.oxd-grid-2 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+            .type("Sunbeam1")   // Enter Confirm Password
+        cy.get('.orangehrm-employee-image > div > div:nth-child(2) > input')
+            .selectFile("cypress/fixtures/profile.png", {force: true})
+        cy.get('.oxd-button--secondary')
+            .click()    // Click on Save button
+
+        cy.wait(10000)
+        cy.get('li.oxd-topbar-body-nav-tab.--visited')
+            .click()
+        cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-autocomplete-wrapper > .oxd-autocomplete-text-input > input')
+            .type("Ethan")  //Enter name
+        cy.wait(2000)
+        cy.get('.oxd-autocomplete-option') //Click on Auto Completion
+            .click()
+        cy.wait(2000)    
+        cy.get('.oxd-form-actions > .oxd-button--secondary')
+            .click()    //Click on search button
+        cy.wait(2000)
+        cy.get('@employeeId').then(employeeId=>{
+            cy.log(`Outside: ${employeeId}`)
+            cy.get('.oxd-table-card > .oxd-table-row > :nth-child(2) > div')
+                .should("have.text",employeeId)
+        });
+        
+        cy.get('.oxd-table-card > .oxd-table-row > :nth-child(3) > div')
+            .should("have.text", "Ethan James")
+        cy.get('.oxd-table-card > .oxd-table-row > :nth-child(4) > div')
+            .should("have.text", "Parker")
+    });
 });
