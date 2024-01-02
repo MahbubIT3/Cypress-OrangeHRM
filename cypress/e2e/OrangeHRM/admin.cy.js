@@ -2,20 +2,19 @@
 import { LoginPage } from "../../Pages/LoginPage"
 const loginPage = new LoginPage()
 
+beforeEach(()=>{
+    cy.log("Login test is started...")
+    cy.viewport(1536, 750);
+    cy.visit("https://opensource-demo.orangehrmlive.com")
+    loginPage.enterUserName("Admin")
+    loginPage.enterPassword("admin123")
+    loginPage.clickLoginButton()
+    cy.url()
+        .should("equal","https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+    cy.log("Login test completed...")
+});
+
 describe("Admin Module", ()=>{
-    beforeEach(()=>{
-        cy.log("Login test is started...")
-        cy.viewport(1536, 750);
-        cy.visit("https://opensource-demo.orangehrmlive.com")
-        loginPage.enterUserName("Admin")
-        loginPage.enterPassword("admin123")
-        loginPage.clickLoginButton()
-        cy.url()
-            .should("equal","https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
-        cy.log("Login test completed...")
-    });
-
-
     it("language should be change to English", ()=>{
         cy.log("Test case 1 is started")
         cy.wait(4000)
@@ -41,17 +40,19 @@ describe("Admin Module", ()=>{
             });
         cy.log("Test case 1 is completed...")
     });
+});
 
+describe("My Info Module", ()=>{
     it("name should be changed", ()=>{
         cy.log("Test case 2 is started")
         cy.wait(4000)
         cy.get(':nth-child(6) > .oxd-main-menu-item').click()
         cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input')
             .clear()
-            .type("TestF")
+            .type("Lawrence")
         cy.get(':nth-child(3) > :nth-child(2) > .oxd-input')
             .clear()
-            .type("TestL")
+            .type("Griffin")
         cy.get(':nth-child(1) > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input')
             .clear()
             .type("TestN")
@@ -60,7 +61,7 @@ describe("Admin Module", ()=>{
         cy.wait(4000)
         cy.reload();
         cy.get('.oxd-userdropdown-name')
-            .should("have.text", "TestF TestL")
+            .should("have.text", "Lawrence Griffin")
         cy.log("Test case 2 is completed...")
     
     });
