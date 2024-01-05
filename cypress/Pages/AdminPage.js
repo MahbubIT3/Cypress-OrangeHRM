@@ -3,7 +3,7 @@ export class AdminPage{
     configuration_dropdown = '.oxd-topbar-body-nav > ul > :nth-child(7)'
     localization = '.oxd-dropdown-menu > :nth-child(3)'
     language_dropdown = ':nth-child(1) > .oxd-grid-2 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text'
-    current_language = this.language_dropdown+' > .oxd-select-text-input'
+    current_language = ':nth-child(1) > .oxd-grid-2 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text-input'
     select_language = '.oxd-select-dropdown > :nth-child(4)'
     language_save_button = '.oxd-button'
     //General variables
@@ -21,7 +21,8 @@ export class AdminPage{
     }
 
     displayedLanguage(){
-        cy.get(this.current_language).invoke('text')
+       return cy.get(this.current_language)
+        .invoke('text');
     }
 
     clickLanguageDropdown(){
