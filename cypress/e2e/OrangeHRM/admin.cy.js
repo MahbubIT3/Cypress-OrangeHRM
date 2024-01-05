@@ -32,7 +32,7 @@ describe("Admin Module", ()=>{
         cy.wait(2000);
         adminPage.clickLocalization();
         cy.wait(4000);
-        adminPage.displayedLanguage
+        adminPage.displayedLanguage()
             .then((currentLanguage) =>{
                 if (currentLanguage.trim()!==adminPage.expected_language) {
                     adminPage.clickLanguageDropdown();
@@ -160,7 +160,7 @@ describe("My Info Module", ()=>{
 
 describe("PIM Module",()=>{
     let employeeId;
-    it.only("Add an Employee",()=>{
+    it("Add an Employee",()=>{
         cy.get(':nth-child(2) > .oxd-main-menu-item')
             .click()    // Go to PIM
         cy.get('.oxd-topbar-body-nav > ul > :nth-child(3)')
