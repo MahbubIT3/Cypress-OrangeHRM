@@ -1,6 +1,9 @@
-import { MyInfoPage } from "MyInfoPage";
-const myInfoPage = new MyInfoPage();
+import { MyInfoPage } from "../Pages/MyInfoPage";
 export class PostLogin{
+    constructor(){
+        this.myInfoPage = new MyInfoPage();
+    }
+    
     //Element locators
     admin_menu = ':nth-child(1) > .oxd-main-menu-item'
     my_info_menu = ':nth-child(6) > .oxd-main-menu-item'
