@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 1,
+    "failures": 0,
+    "start": "2024-01-06T16:24:24.561Z",
+    "end": "2024-01-06T16:24:24.614Z",
+    "duration": 53,
+    "testsRegistered": 1,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "46048a3e-b204-4771-b3ba-168806fe5182",
+      "title": "",
+      "fullFile": "cypress\\e2e\\OrangeHRM\\suduku.cy.js",
+      "file": "cypress\\e2e\\OrangeHRM\\suduku.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3b8fba5c-3efd-41bd-865d-194f65da162c",
+          "title": "Login Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Invalid Login - User should not be logged in",
+              "fullTitle": "Login Test Invalid Login - User should not be logged in",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.wait(5000);\ncy.get('.status__time').should(\"have.text\", \"00:07\");\n// cy.get(':nth-child(4) > :nth-child(6)').click()\n// cy.get('.status__numbers > :nth-child(7)').click()\ncy.get(\".game__cell--filled\").should(\"have.length\", \"45\");\ncy.get(\".game__cell\").should(\"have.length\", \"81\");\ncy.get(\"td.game__cell:contains('0')\").should(\"have.length\", \"36\");\ncy.get(\"td.game__cell:contains('0')\").eq(0).click();\ncy.get('.status__numbers > :nth-child(8)').click();\ncy.get(\"td.game__cell:contains('0')\").should(\"have.length\", \"35\");",
+              "err": {},
+              "uuid": "2780ae61-3b9f-454f-aa14-3d871b6cf18f",
+              "parentUUID": "3b8fba5c-3efd-41bd-865d-194f65da162c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "2780ae61-3b9f-454f-aa14-3d871b6cf18f"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-01-06T16:21:21.610Z",
+    "end": "2024-01-06T16:23:44.001Z",
+    "duration": 142391,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2b1f0a24-7ae0-438a-bd57-951d12cdba96",
+      "title": "",
+      "fullFile": "cypress\\e2e\\OrangeHRM\\admin.cy.js",
+      "file": "cypress\\e2e\\OrangeHRM\\admin.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e17faf1d-ed0c-424b-be96-275a1ff02072",
+          "title": "Admin Module",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "language should be change to English",
+              "fullTitle": "Admin Module language should be change to English",
+              "timedOut": null,
+              "duration": 28586,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log(\"Test case 1 is started\");\ncy.wait(4000);\npostLogin.clickAdminMenu();\nadminPage.clickConfiguration();\ncy.wait(2000);\nadminPage.clickLocalization();\ncy.wait(4000);\nadminPage.displayedLanguage().then(currentLanguage => {\n  if (currentLanguage.trim() !== adminPage.expected_language) {\n    adminPage.clickLanguageDropdown();\n    adminPage.selectLanguage();\n    adminPage.clickSave();\n  } else {\n    adminPage.checkSelectedLanguage();\n  }\n});\ncy.log(\"Test case 1 is completed...\");",
+              "err": {},
+              "uuid": "671b7b5e-d0a1-4e9c-9bf3-c3088f3dca3d",
+              "parentUUID": "e17faf1d-ed0c-424b-be96-275a1ff02072",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "671b7b5e-d0a1-4e9c-9bf3-c3088f3dca3d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 28586,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "8285e861-88e7-48dc-bfab-f6295f490d88",
+          "title": "My Info Module",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "name should be changed",
+              "fullTitle": "My Info Module name should be changed",
+              "timedOut": null,
+              "duration": 21224,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log(\"Test case 2 is started\");\ncy.wait(4000);\npostLogin.clickMyInfoMenu();\nmyInfoPage.enterFirstname();\nmyInfoPage.enterLastName();\nmyInfoPage.enterNickname();\nmyInfoPage.clickSavePersonalDetails();\ncy.wait(4000);\ncy.reload();\npostLogin.checkName();\ncy.log(\"Test case 2 is completed...\");",
+              "err": {},
+              "uuid": "5a1481a1-8c17-4454-8444-cc8f5c0eeb60",
+              "parentUUID": "8285e861-88e7-48dc-bfab-f6295f490d88",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "attachment should be uploaded, edited, downloaded and deleted",
+              "fullTitle": "My Info Module attachment should be uploaded, edited, downloaded and deleted",
+              "timedOut": null,
+              "duration": 39357,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log(\"Test case 3 is started\");\ncy.get(':nth-child(6) > .oxd-main-menu-item') //click on My Info\n.click();\ncy.scrollTo(0, 500);\ncy.get('.orangehrm-action-header > .oxd-button') //Click on Add Attachment\n.click();\ncy.wait(4000);\ncy.get('.oxd-file-input').selectFile(\"cypress/fixtures/sample.txt\", {\n  force: true\n}); //Upload an Attachment\ncy.get('.oxd-textarea').type(\"This is sample file\"); //Comment about the attachment\ncy.get(\"h6\") //Save the attachment\n.contains(\"Add Attachment\").siblings(\"form\").find(\"div>button[type='submit']\").click();\ncy.get('.oxd-table-row > :nth-child(2) > div') //Check the file name in table\n.should(\"have.text\", \"sample.txt\");\ncy.get('.oxd-table-row > :nth-child(3) > div') //Check the comment about the file\n.should(\"have.text\", \"This is sample file\");\ncy.wait(2000);\ncy.get('.oxd-table-cell-actions > :nth-child(3)') //Download the attachment\n.click();\n//=================================//\ncy.get('.oxd-table-cell-actions > :nth-child(1)').click(); //Edit Attachment\ncy.get('div.orangehrm-card-container > form > div:nth-child(2) > div:nth-child(1) label').should(\"have.text\", \"Replace With\");\ncy.get('.oxd-file-div') //Click on Add Attachment\n.click();\ncy.wait(4000);\ncy.get('.oxd-file-input').selectFile(\"cypress/fixtures/sample2.txt\", {\n  force: true\n}); //Upload an Attachment\ncy.get('.oxd-textarea').clear().type(\"This is replaced sample 2 file\"); //Comment about the attachment\ncy.get(\"h6\") //Save the attachment\n.contains(\"Edit Attachment\").siblings(\"form\").find(\"div>button[type='submit']\").click();\ncy.get('.oxd-table-cell-actions > :nth-child(3)') //Download the attachment\n.click();\ncy.readFile('cypress/downloads/sample.txt').then(file1Content => {\n  //Comparing two files\n  cy.readFile('cypress/downloads/sample2.txt').then(file2Content => {\n    expect(file1Content).to.not.equal(file2Content);\n  });\n});\ncy.get('.oxd-table-cell-actions > :nth-child(2)') //Click on the delete icon to delete the uploaded attachment\n.click();\ncy.get('.oxd-button--label-danger') //Confirm Delete\n.click();\ncy.wait(4000);\ncy.get('div>span.oxd-text--span').should(\"have.text\", \"No Records Found\"); //Assert no records found",
+              "err": {},
+              "uuid": "7ceeef62-c770-40c2-ab81-dc6ce0b85004",
+              "parentUUID": "8285e861-88e7-48dc-bfab-f6295f490d88",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "date of birth should be updated",
+              "fullTitle": "My Info Module date of birth should be updated",
+              "timedOut": null,
+              "duration": 15562,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log(\"Test case 3 is started\");\ncy.get(':nth-child(6) > .oxd-main-menu-item') //click on My Info\n.click();\ncy.scrollTo(0, 200);\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click(); //Open calendar\ncy.get('.oxd-calendar-selector-month').click();\ncy.get('.oxd-calendar-dropdown > :nth-child(1)').click(); //Month January Selected\ncy.get('.oxd-calendar-selector-year').click();\ncy.contains('1995').click(); //Year 1995 Selected\ncy.get(':nth-child(7) > .oxd-calendar-date').click(); //Date 7 Selected\ncy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click(); //Save data\n//Assertion for date of birth\ncy.scrollTo(0, 200);\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click();\ncy.get('.oxd-calendar-selector-month-selected > .oxd-text').should(\"have.text\", \"January\");\ncy.get('.oxd-calendar-selector-year-selected > .oxd-text').should(\"have.text\", \"1995\");\ncy.get('.--selected').should(\"have.text\", \"7\");",
+              "err": {},
+              "uuid": "8c5c3208-cb83-4635-afb5-e6ef40844d49",
+              "parentUUID": "8285e861-88e7-48dc-bfab-f6295f490d88",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5a1481a1-8c17-4454-8444-cc8f5c0eeb60",
+            "7ceeef62-c770-40c2-ab81-dc6ce0b85004",
+            "8c5c3208-cb83-4635-afb5-e6ef40844d49"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 76143,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "954b1b6b-569d-49d0-b9fc-a848fc6ac84c",
+          "title": "PIM Module",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Add an Employee",
+              "fullTitle": "PIM Module Add an Employee",
+              "timedOut": null,
+              "duration": 32822,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(':nth-child(2) > .oxd-main-menu-item').click(); // Go to PIM\ncy.get('.oxd-topbar-body-nav > ul > :nth-child(3)').click(); // Click on Add Employee in top Navbar\ncy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').type(\"Ethan\"); //Enter First Name\ncy.get(':nth-child(2) > :nth-child(2) > .oxd-input').type(\"James\"); // Enter Middle Name\ncy.get(':nth-child(3) > :nth-child(2) > .oxd-input').type(\"Parker\"); // Enter Last Name\ncy.get('.orangehrm-full-width-grid > div > div > div:nth-child(2) > input').invoke('val').then(value => {\n  employeeId = value;\n  cy.log(`Employee ID: ${employeeId}`);\n  cy.wrap(employeeId).as('employeeId');\n});\ncy.get('.oxd-switch-input').click(); // Toggle for Create Login Details\ncy.get(':nth-child(4) > .oxd-grid-2 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Ethan123\"); // Enter Username\ncy.get('.user-password-cell > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Sunbeam1\"); // Enter Password\ncy.get('.oxd-grid-2 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Sunbeam1\"); // Enter Confirm Password\ncy.get('.orangehrm-employee-image > div > div:nth-child(2) > input').selectFile(\"cypress/fixtures/profile.png\", {\n  force: true\n});\ncy.get('.oxd-button--secondary').click(); // Click on Save button\ncy.wait(10000);\ncy.get('li.oxd-topbar-body-nav-tab.--visited').click();\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-autocomplete-wrapper > .oxd-autocomplete-text-input > input').type(\"Ethan\"); //Enter name\ncy.wait(2000);\ncy.get('.oxd-autocomplete-option') //Click on Auto Completion\n.click();\ncy.wait(2000);\ncy.get('.oxd-form-actions > .oxd-button--secondary').click(); //Click on search button\ncy.wait(2000);\ncy.get('@employeeId').then(employeeId => {\n  cy.log(`Outside: ${employeeId}`);\n  cy.get('.oxd-table-card > .oxd-table-row > :nth-child(2) > div').should(\"have.text\", employeeId);\n});\ncy.get('.oxd-table-card > .oxd-table-row > :nth-child(3) > div').should(\"have.text\", \"Ethan James\");\ncy.get('.oxd-table-card > .oxd-table-row > :nth-child(4) > div').should(\"have.text\", \"Parker\");",
+              "err": {},
+              "uuid": "1a994530-747a-4e30-a5c8-b9cbbe2ab612",
+              "parentUUID": "954b1b6b-569d-49d0-b9fc-a848fc6ac84c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1a994530-747a-4e30-a5c8-b9cbbe2ab612"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 32822,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

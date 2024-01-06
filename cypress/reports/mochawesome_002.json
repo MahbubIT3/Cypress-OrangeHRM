@@ -1,0 +1,169 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-01-06T16:24:07.307Z",
+    "end": "2024-01-06T16:24:20.950Z",
+    "duration": 13643,
+    "testsRegistered": 3,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 2,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "7ea45fa3-9599-486e-8fbe-7be3ba8e4f30",
+      "title": "",
+      "fullFile": "cypress\\e2e\\OrangeHRM\\login_logout.cy.js",
+      "file": "cypress\\e2e\\OrangeHRM\\login_logout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7add4e08-5bce-4ac1-86a6-0a45b569fa83",
+          "title": "Login Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Invalid Login - User should not be logged in",
+              "fullTitle": "Login Test Invalid Login - User should not be logged in",
+              "timedOut": null,
+              "duration": 10423,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.enterUserName(\"iadmin\");\nloginPage.enterPassword(\"ipassword\");\nloginPage.clickLoginButton();\nloginPage.checkInvalidLogin();",
+              "err": {
+                "message": "CypressError: Timed out after waiting `10000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `10000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.",
+                "estack": "CypressError: Timed out after waiting `10000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `10000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.\n    at timedOutWaitingForPageLoad (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:130429:64)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:131417:16)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at LoginPage.visitPage (webpack:///./cypress/Pages/LoginPage.js:12:11)\n    at Context.eval (webpack:///./cypress/e2e/OrangeHRM/login_logout.cy.js:9:14)",
+                "diff": null
+              },
+              "uuid": "2263ae56-af3a-4844-85f4-e4579870fa71",
+              "parentUUID": "7add4e08-5bce-4ac1-86a6-0a45b569fa83",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Valid Login - User should be logged in",
+              "fullTitle": "Login Test Valid Login - User should be logged in",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.enterUserName(\"Admin\");\nloginPage.enterPassword(\"admin123\");\nloginPage.clickLoginButton();\ncy.url().should(\"equal\", postLogin.dashboard_url);",
+              "err": {},
+              "uuid": "0de01509-f2aa-4c44-866f-f227d90fe409",
+              "parentUUID": "7add4e08-5bce-4ac1-86a6-0a45b569fa83",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "2263ae56-af3a-4844-85f4-e4579870fa71"
+          ],
+          "pending": [],
+          "skipped": [
+            "0de01509-f2aa-4c44-866f-f227d90fe409"
+          ],
+          "duration": 10423,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "e9cd03f4-9e89-4866-8547-a73b967aef99",
+          "title": "Logout Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "User should be logged out",
+              "fullTitle": "Logout Test User should be logged out",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.enterUserName(\"Admin\");\nloginPage.enterPassword(\"admin123\");\nloginPage.clickLoginButton();\ncy.wait(2000);\npostLogin.clickUserDropdown();\npostLogin.clickLogout();\ncy.wait(4000);\ncy.url().should(\"equal\", loginPage.login_page_url);",
+              "err": {},
+              "uuid": "afa677b4-8504-4b61-9dca-1af9671ba39c",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "afa677b4-8504-4b61-9dca-1af9671ba39c"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
