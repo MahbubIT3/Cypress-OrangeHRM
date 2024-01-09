@@ -1,24 +1,24 @@
 {
   "stats": {
     "suites": 4,
-    "tests": 10,
-    "passes": 5,
+    "tests": 9,
+    "passes": 8,
     "pending": 1,
-    "failures": 2,
-    "testsRegistered": 10,
-    "passPercent": 50,
-    "pendingPercent": 10,
+    "failures": 0,
+    "testsRegistered": 9,
+    "passPercent": 88.88888888888889,
+    "pendingPercent": 11.11111111111111,
     "other": 0,
     "hasOther": false,
-    "skipped": 2,
-    "hasSkipped": true,
-    "start": "2024-01-06T16:21:21.610Z",
-    "end": "2024-01-06T16:24:24.614Z",
-    "duration": 183004
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2024-01-09T12:34:12.807Z",
+    "end": "2024-01-09T12:37:52.420Z",
+    "duration": 219613
   },
   "results": [
     {
-      "uuid": "730029fe-d244-4398-8917-9fd041ac533e",
+      "uuid": "29997cdd-e2c0-405a-b815-5c513119f32e",
       "title": "",
       "fullFile": "cypress\\e2e\\OrangeHRM\\employee.cy.js",
       "file": "cypress\\e2e\\OrangeHRM\\employee.cy.js",
@@ -29,39 +29,94 @@
           "title": "Punch In or Out",
           "fullTitle": "Punch In or Out",
           "timedOut": null,
-          "duration": 10698,
-          "state": "failed",
-          "speed": null,
-          "pass": false,
-          "fail": true,
+          "duration": 43195,
+          "state": "passed",
+          "speed": "slow",
+          "pass": true,
+          "fail": false,
           "pending": false,
           "context": null,
           "code": "cy.wait(5000);\nlet punchInDate;\nlet punchInTime;\nlet punchType;\ncy.get('div.orangehrm-attendance-card-bar > button').click();\ncy.wait(10000);\ncy.get('.orangehrm-card-container > .oxd-text--h6').invoke('text').then(text => {\n  punchType = text;\n  if (punchType == \"Punch In\") {\n    cy.get('.oxd-date-input > .oxd-input').invoke('val').then(value => {\n      punchInDate = value;\n      cy.log(`Punched in Date: ${punchInDate}`);\n      cy.wrap(punchInDate).as('punchInDate');\n    });\n    cy.get('.oxd-time-input > .oxd-input').invoke('val').then(value => {\n      punchInTime = value;\n      cy.log(`Punched in Time: ${punchInTime}`);\n      cy.wrap(punchInTime).as('punchInTime');\n    });\n    cy.get('.oxd-button').click();\n    cy.wait(5000);\n    cy.get('@punchInDate').then(punchInDate => {\n      cy.get('@punchInTime').then(punchInTime => {\n        cy.get(':nth-child(2) > .oxd-text--p').should(\"contain.text\", punchInDate).should(\"contain.text\", punchInTime);\n      });\n    });\n    cy.log(\"You are punched in. You can now punch out\");\n  } else {\n    cy.log(\"Please punch out\");\n    cy.get('.oxd-time-input > .oxd-input').click();\n    for (let i = 0; i <= 5; i++) {\n      cy.get('.oxd-time-minute-input > .bi-chevron-up').click();\n    }\n    cy.get(':nth-child(2) > input').click();\n    cy.get('.oxd-button').click();\n  }\n});",
-          "err": {
-            "message": "CypressError: Timed out after waiting `10000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `10000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.",
-            "estack": "CypressError: Timed out after waiting `10000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `10000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.\n    at timedOutWaitingForPageLoad (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:130429:64)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:131417:16)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/e2e/OrangeHRM/employee.cy.js:7:7)",
-            "diff": null
-          },
-          "uuid": "1bb91163-d8c7-4346-b135-00e42dac0507",
-          "parentUUID": "730029fe-d244-4398-8917-9fd041ac533e",
+          "err": {},
+          "uuid": "4919ba3c-3bad-41d3-b6b6-705fe90884bb",
+          "parentUUID": "29997cdd-e2c0-405a-b815-5c513119f32e",
           "isHook": false,
           "skipped": false
         }
       ],
-      "suites": [],
-      "passes": [],
-      "failures": [
-        "1bb91163-d8c7-4346-b135-00e42dac0507"
+      "suites": [
+        {
+          "uuid": "b10e3133-781c-4113-b5f0-40072b8fbfe5",
+          "title": "My Info Module",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "name should be changed",
+              "fullTitle": "My Info Module name should be changed",
+              "timedOut": null,
+              "duration": 20276,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log(\"Test case 2 is started\");\ncy.wait(4000);\npostLogin.clickMyInfoMenu();\nmyInfoPage.enterFirstname();\nmyInfoPage.enterLastName();\nmyInfoPage.enterNickname();\nmyInfoPage.clickSavePersonalDetails();\ncy.wait(4000);\ncy.reload();\npostLogin.checkName();\ncy.log(\"Test case 2 is completed...\");",
+              "err": {},
+              "uuid": "1e518d19-7b34-4b42-a7bc-d9c6f99c92c3",
+              "parentUUID": "b10e3133-781c-4113-b5f0-40072b8fbfe5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "attachment should be uploaded, edited, downloaded and deleted",
+              "fullTitle": "My Info Module attachment should be uploaded, edited, downloaded and deleted",
+              "timedOut": null,
+              "duration": 33225,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log(\"Test case 3 is started\");\ncy.get(':nth-child(3) > .oxd-main-menu-item') //click on My Info\n.click();\ncy.scrollTo(0, 500);\ncy.get('.orangehrm-action-header > .oxd-button') //Click on Add Attachment\n.click();\ncy.wait(4000);\ncy.get('.oxd-file-input').selectFile(\"cypress/fixtures/sample.txt\", {\n  force: true\n}); //Upload an Attachment\ncy.get('.oxd-textarea').type(\"This is sample file\"); //Comment about the attachment\ncy.get(\"h6\") //Save the attachment\n.contains(\"Add Attachment\").siblings(\"form\").find(\"div>button[type='submit']\").click();\ncy.get('.oxd-table-row > :nth-child(2) > div') //Check the file name in table\n.should(\"have.text\", \"sample.txt\");\ncy.get('.oxd-table-row > :nth-child(3) > div') //Check the comment about the file\n.should(\"have.text\", \"This is sample file\");\ncy.wait(2000);\ncy.get('.oxd-table-cell-actions > :nth-child(3)') //Download the attachment\n.click();\n//=================================//\ncy.get('.oxd-table-cell-actions > :nth-child(1)').click(); //Edit Attachment\ncy.get('div.orangehrm-card-container > form > div:nth-child(2) > div:nth-child(1) label').should(\"have.text\", \"Replace With\");\ncy.get('.oxd-file-div') //Click on Add Attachment\n.click();\ncy.wait(4000);\ncy.get('.oxd-file-input').selectFile(\"cypress/fixtures/sample2.txt\", {\n  force: true\n}); //Upload an Attachment\ncy.get('.oxd-textarea').clear().type(\"This is replaced sample 2 file\"); //Comment about the attachment\ncy.get(\"h6\") //Save the attachment\n.contains(\"Edit Attachment\").siblings(\"form\").find(\"div>button[type='submit']\").click();\ncy.get('.oxd-table-cell-actions > :nth-child(3)') //Download the attachment\n.click();\ncy.readFile('cypress/downloads/sample.txt').then(file1Content => {\n  //Comparing two files\n  cy.readFile('cypress/downloads/sample2.txt').then(file2Content => {\n    expect(file1Content).to.not.equal(file2Content);\n  });\n});\ncy.get('.oxd-table-cell-actions > :nth-child(2)') //Click on the delete icon to delete the uploaded attachment\n.click();\ncy.get('.oxd-button--label-danger') //Confirm Delete\n.click();\ncy.wait(4000);\ncy.get('div>span.oxd-text--span').should(\"have.text\", \"No Records Found\"); //Assert no records found",
+              "err": {},
+              "uuid": "729c5f97-3019-4b26-99ad-d86d51efdbfc",
+              "parentUUID": "b10e3133-781c-4113-b5f0-40072b8fbfe5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1e518d19-7b34-4b42-a7bc-d9c6f99c92c3",
+            "729c5f97-3019-4b26-99ad-d86d51efdbfc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 53501,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
       ],
+      "passes": [
+        "4919ba3c-3bad-41d3-b6b6-705fe90884bb"
+      ],
+      "failures": [],
       "pending": [],
       "skipped": [],
-      "duration": 10698,
+      "duration": 43195,
       "root": true,
       "rootEmpty": false,
       "_timeout": 2000
     },
     {
-      "uuid": "7ea45fa3-9599-486e-8fbe-7be3ba8e4f30",
+      "uuid": "69097871-2548-42a6-9058-c78f530a49ca",
       "title": "",
       "fullFile": "cypress\\e2e\\OrangeHRM\\login_logout.cy.js",
       "file": "cypress\\e2e\\OrangeHRM\\login_logout.cy.js",
@@ -70,7 +125,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "7add4e08-5bce-4ac1-86a6-0a45b569fa83",
+          "uuid": "197fda4f-039e-4bd3-ba6f-401858373aaf",
           "title": "Login Test",
           "fullFile": "",
           "file": "",
@@ -81,21 +136,17 @@
               "title": "Invalid Login - User should not be logged in",
               "fullTitle": "Login Test Invalid Login - User should not be logged in",
               "timedOut": null,
-              "duration": 10423,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 13211,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
               "code": "loginPage.enterUserName(\"iadmin\");\nloginPage.enterPassword(\"ipassword\");\nloginPage.clickLoginButton();\nloginPage.checkInvalidLogin();",
-              "err": {
-                "message": "CypressError: Timed out after waiting `10000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `10000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.",
-                "estack": "CypressError: Timed out after waiting `10000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `10000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before each` hook we are skipping all of the remaining tests.\n    at timedOutWaitingForPageLoad (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:130429:64)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:131417:16)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at LoginPage.visitPage (webpack:///./cypress/Pages/LoginPage.js:12:11)\n    at Context.eval (webpack:///./cypress/e2e/OrangeHRM/login_logout.cy.js:9:14)",
-                "diff": null
-              },
-              "uuid": "2263ae56-af3a-4844-85f4-e4579870fa71",
-              "parentUUID": "7add4e08-5bce-4ac1-86a6-0a45b569fa83",
+              "err": {},
+              "uuid": "ef952aaa-dbbf-4ac9-bf72-92039105ecb1",
+              "parentUUID": "197fda4f-039e-4bd3-ba6f-401858373aaf",
               "isHook": false,
               "skipped": false
             },
@@ -103,37 +154,36 @@
               "title": "Valid Login - User should be logged in",
               "fullTitle": "Login Test Valid Login - User should be logged in",
               "timedOut": null,
-              "duration": 0,
-              "state": "skipped",
-              "speed": null,
-              "pass": false,
+              "duration": 3172,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "loginPage.enterUserName(\"Admin\");\nloginPage.enterPassword(\"admin123\");\nloginPage.clickLoginButton();\ncy.url().should(\"equal\", postLogin.dashboard_url);",
               "err": {},
-              "uuid": "0de01509-f2aa-4c44-866f-f227d90fe409",
-              "parentUUID": "7add4e08-5bce-4ac1-86a6-0a45b569fa83",
+              "uuid": "fbebfce8-0324-4cd5-9a6d-90f983090f26",
+              "parentUUID": "197fda4f-039e-4bd3-ba6f-401858373aaf",
               "isHook": false,
-              "skipped": true
+              "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "2263ae56-af3a-4844-85f4-e4579870fa71"
+          "passes": [
+            "ef952aaa-dbbf-4ac9-bf72-92039105ecb1",
+            "fbebfce8-0324-4cd5-9a6d-90f983090f26"
           ],
+          "failures": [],
           "pending": [],
-          "skipped": [
-            "0de01509-f2aa-4c44-866f-f227d90fe409"
-          ],
-          "duration": 10423,
+          "skipped": [],
+          "duration": 16383,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "e9cd03f4-9e89-4866-8547-a73b967aef99",
+          "uuid": "993ee9e1-5ab9-4dbd-af0d-0fd98c2d39e7",
           "title": "Logout Test",
           "fullFile": "",
           "file": "",
@@ -144,29 +194,29 @@
               "title": "User should be logged out",
               "fullTitle": "Logout Test User should be logged out",
               "timedOut": null,
-              "duration": 0,
-              "state": "skipped",
-              "speed": null,
-              "pass": false,
+              "duration": 10727,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "loginPage.enterUserName(\"Admin\");\nloginPage.enterPassword(\"admin123\");\nloginPage.clickLoginButton();\ncy.wait(2000);\npostLogin.clickUserDropdown();\npostLogin.clickLogout();\ncy.wait(4000);\ncy.url().should(\"equal\", loginPage.login_page_url);",
               "err": {},
-              "uuid": "afa677b4-8504-4b61-9dca-1af9671ba39c",
-              "parentUUID": null,
+              "uuid": "d6c9112b-84a8-44b3-9ad2-97a086734c55",
+              "parentUUID": "993ee9e1-5ab9-4dbd-af0d-0fd98c2d39e7",
               "isHook": false,
-              "skipped": true
+              "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
+          "passes": [
+            "d6c9112b-84a8-44b3-9ad2-97a086734c55"
+          ],
           "failures": [],
           "pending": [],
-          "skipped": [
-            "afa677b4-8504-4b61-9dca-1af9671ba39c"
-          ],
-          "duration": 0,
+          "skipped": [],
+          "duration": 10727,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -182,7 +232,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "46048a3e-b204-4771-b3ba-168806fe5182",
+      "uuid": "d32dffd0-91c9-4c41-a2fb-ef61ac10f161",
       "title": "",
       "fullFile": "cypress\\e2e\\OrangeHRM\\suduku.cy.js",
       "file": "cypress\\e2e\\OrangeHRM\\suduku.cy.js",
@@ -191,7 +241,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3b8fba5c-3efd-41bd-865d-194f65da162c",
+          "uuid": "21dcb131-74e8-4873-8162-7ec0001a3f55",
           "title": "Login Test",
           "fullFile": "",
           "file": "",
@@ -211,8 +261,8 @@
               "context": null,
               "code": "cy.visit(\"http://localhost:3000\");\ncy.wait(5000);\ncy.get('.status__time').should(\"have.text\", \"00:07\");\n// cy.get(':nth-child(4) > :nth-child(6)').click()\n// cy.get('.status__numbers > :nth-child(7)').click()\ncy.get(\".game__cell--filled\").should(\"have.length\", \"45\");\ncy.get(\".game__cell\").should(\"have.length\", \"81\");\ncy.get(\"td.game__cell:contains('0')\").should(\"have.length\", \"36\");\ncy.get(\"td.game__cell:contains('0')\").eq(0).click();\ncy.get('.status__numbers > :nth-child(8)').click();\ncy.get(\"td.game__cell:contains('0')\").should(\"have.length\", \"35\");",
               "err": {},
-              "uuid": "2780ae61-3b9f-454f-aa14-3d871b6cf18f",
-              "parentUUID": "3b8fba5c-3efd-41bd-865d-194f65da162c",
+              "uuid": "c07cf0fe-8bd9-45a0-8522-c43e9d9ceb74",
+              "parentUUID": "21dcb131-74e8-4873-8162-7ec0001a3f55",
               "isHook": false,
               "skipped": false
             }
@@ -221,7 +271,7 @@
           "passes": [],
           "failures": [],
           "pending": [
-            "2780ae61-3b9f-454f-aa14-3d871b6cf18f"
+            "c07cf0fe-8bd9-45a0-8522-c43e9d9ceb74"
           ],
           "skipped": [],
           "duration": 0,
@@ -240,7 +290,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "2b1f0a24-7ae0-438a-bd57-951d12cdba96",
+      "uuid": "199e4ebf-aa2f-49bf-86db-0328f5a49045",
       "title": "",
       "fullFile": "cypress\\e2e\\OrangeHRM\\admin.cy.js",
       "file": "cypress\\e2e\\OrangeHRM\\admin.cy.js",
@@ -249,7 +299,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e17faf1d-ed0c-424b-be96-275a1ff02072",
+          "uuid": "5a06e7b6-8914-4b24-b72f-e34bf7f0c963",
           "title": "Admin Module",
           "fullFile": "",
           "file": "",
@@ -260,7 +310,7 @@
               "title": "language should be change to English",
               "fullTitle": "Admin Module language should be change to English",
               "timedOut": null,
-              "duration": 28586,
+              "duration": 27417,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -269,103 +319,26 @@
               "context": null,
               "code": "cy.log(\"Test case 1 is started\");\ncy.wait(4000);\npostLogin.clickAdminMenu();\nadminPage.clickConfiguration();\ncy.wait(2000);\nadminPage.clickLocalization();\ncy.wait(4000);\nadminPage.displayedLanguage().then(currentLanguage => {\n  if (currentLanguage.trim() !== adminPage.expected_language) {\n    adminPage.clickLanguageDropdown();\n    adminPage.selectLanguage();\n    adminPage.clickSave();\n  } else {\n    adminPage.checkSelectedLanguage();\n  }\n});\ncy.log(\"Test case 1 is completed...\");",
               "err": {},
-              "uuid": "671b7b5e-d0a1-4e9c-9bf3-c3088f3dca3d",
-              "parentUUID": "e17faf1d-ed0c-424b-be96-275a1ff02072",
+              "uuid": "da07582a-4762-49b8-ac82-7aaba31486d0",
+              "parentUUID": "5a06e7b6-8914-4b24-b72f-e34bf7f0c963",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "671b7b5e-d0a1-4e9c-9bf3-c3088f3dca3d"
+            "da07582a-4762-49b8-ac82-7aaba31486d0"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 28586,
+          "duration": 27417,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "8285e861-88e7-48dc-bfab-f6295f490d88",
-          "title": "My Info Module",
-          "fullFile": "",
-          "file": "",
-          "beforeHooks": [],
-          "afterHooks": [],
-          "tests": [
-            {
-              "title": "name should be changed",
-              "fullTitle": "My Info Module name should be changed",
-              "timedOut": null,
-              "duration": 21224,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "context": null,
-              "code": "cy.log(\"Test case 2 is started\");\ncy.wait(4000);\npostLogin.clickMyInfoMenu();\nmyInfoPage.enterFirstname();\nmyInfoPage.enterLastName();\nmyInfoPage.enterNickname();\nmyInfoPage.clickSavePersonalDetails();\ncy.wait(4000);\ncy.reload();\npostLogin.checkName();\ncy.log(\"Test case 2 is completed...\");",
-              "err": {},
-              "uuid": "5a1481a1-8c17-4454-8444-cc8f5c0eeb60",
-              "parentUUID": "8285e861-88e7-48dc-bfab-f6295f490d88",
-              "isHook": false,
-              "skipped": false
-            },
-            {
-              "title": "attachment should be uploaded, edited, downloaded and deleted",
-              "fullTitle": "My Info Module attachment should be uploaded, edited, downloaded and deleted",
-              "timedOut": null,
-              "duration": 39357,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "context": null,
-              "code": "cy.log(\"Test case 3 is started\");\ncy.get(':nth-child(6) > .oxd-main-menu-item') //click on My Info\n.click();\ncy.scrollTo(0, 500);\ncy.get('.orangehrm-action-header > .oxd-button') //Click on Add Attachment\n.click();\ncy.wait(4000);\ncy.get('.oxd-file-input').selectFile(\"cypress/fixtures/sample.txt\", {\n  force: true\n}); //Upload an Attachment\ncy.get('.oxd-textarea').type(\"This is sample file\"); //Comment about the attachment\ncy.get(\"h6\") //Save the attachment\n.contains(\"Add Attachment\").siblings(\"form\").find(\"div>button[type='submit']\").click();\ncy.get('.oxd-table-row > :nth-child(2) > div') //Check the file name in table\n.should(\"have.text\", \"sample.txt\");\ncy.get('.oxd-table-row > :nth-child(3) > div') //Check the comment about the file\n.should(\"have.text\", \"This is sample file\");\ncy.wait(2000);\ncy.get('.oxd-table-cell-actions > :nth-child(3)') //Download the attachment\n.click();\n//=================================//\ncy.get('.oxd-table-cell-actions > :nth-child(1)').click(); //Edit Attachment\ncy.get('div.orangehrm-card-container > form > div:nth-child(2) > div:nth-child(1) label').should(\"have.text\", \"Replace With\");\ncy.get('.oxd-file-div') //Click on Add Attachment\n.click();\ncy.wait(4000);\ncy.get('.oxd-file-input').selectFile(\"cypress/fixtures/sample2.txt\", {\n  force: true\n}); //Upload an Attachment\ncy.get('.oxd-textarea').clear().type(\"This is replaced sample 2 file\"); //Comment about the attachment\ncy.get(\"h6\") //Save the attachment\n.contains(\"Edit Attachment\").siblings(\"form\").find(\"div>button[type='submit']\").click();\ncy.get('.oxd-table-cell-actions > :nth-child(3)') //Download the attachment\n.click();\ncy.readFile('cypress/downloads/sample.txt').then(file1Content => {\n  //Comparing two files\n  cy.readFile('cypress/downloads/sample2.txt').then(file2Content => {\n    expect(file1Content).to.not.equal(file2Content);\n  });\n});\ncy.get('.oxd-table-cell-actions > :nth-child(2)') //Click on the delete icon to delete the uploaded attachment\n.click();\ncy.get('.oxd-button--label-danger') //Confirm Delete\n.click();\ncy.wait(4000);\ncy.get('div>span.oxd-text--span').should(\"have.text\", \"No Records Found\"); //Assert no records found",
-              "err": {},
-              "uuid": "7ceeef62-c770-40c2-ab81-dc6ce0b85004",
-              "parentUUID": "8285e861-88e7-48dc-bfab-f6295f490d88",
-              "isHook": false,
-              "skipped": false
-            },
-            {
-              "title": "date of birth should be updated",
-              "fullTitle": "My Info Module date of birth should be updated",
-              "timedOut": null,
-              "duration": 15562,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "context": null,
-              "code": "cy.log(\"Test case 3 is started\");\ncy.get(':nth-child(6) > .oxd-main-menu-item') //click on My Info\n.click();\ncy.scrollTo(0, 200);\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click(); //Open calendar\ncy.get('.oxd-calendar-selector-month').click();\ncy.get('.oxd-calendar-dropdown > :nth-child(1)').click(); //Month January Selected\ncy.get('.oxd-calendar-selector-year').click();\ncy.contains('1995').click(); //Year 1995 Selected\ncy.get(':nth-child(7) > .oxd-calendar-date').click(); //Date 7 Selected\ncy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click(); //Save data\n//Assertion for date of birth\ncy.scrollTo(0, 200);\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click();\ncy.get('.oxd-calendar-selector-month-selected > .oxd-text').should(\"have.text\", \"January\");\ncy.get('.oxd-calendar-selector-year-selected > .oxd-text').should(\"have.text\", \"1995\");\ncy.get('.--selected').should(\"have.text\", \"7\");",
-              "err": {},
-              "uuid": "8c5c3208-cb83-4635-afb5-e6ef40844d49",
-              "parentUUID": "8285e861-88e7-48dc-bfab-f6295f490d88",
-              "isHook": false,
-              "skipped": false
-            }
-          ],
-          "suites": [],
-          "passes": [
-            "5a1481a1-8c17-4454-8444-cc8f5c0eeb60",
-            "7ceeef62-c770-40c2-ab81-dc6ce0b85004",
-            "8c5c3208-cb83-4635-afb5-e6ef40844d49"
-          ],
-          "failures": [],
-          "pending": [],
-          "skipped": [],
-          "duration": 76143,
-          "root": false,
-          "rootEmpty": false,
-          "_timeout": 2000
-        },
-        {
-          "uuid": "954b1b6b-569d-49d0-b9fc-a848fc6ac84c",
+          "uuid": "eb11676a-931c-4105-b8d1-0d756d1f4660",
           "title": "PIM Module",
           "fullFile": "",
           "file": "",
@@ -376,29 +349,29 @@
               "title": "Add an Employee",
               "fullTitle": "PIM Module Add an Employee",
               "timedOut": null,
-              "duration": 32822,
+              "duration": 45606,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get(':nth-child(2) > .oxd-main-menu-item').click(); // Go to PIM\ncy.get('.oxd-topbar-body-nav > ul > :nth-child(3)').click(); // Click on Add Employee in top Navbar\ncy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').type(\"Ethan\"); //Enter First Name\ncy.get(':nth-child(2) > :nth-child(2) > .oxd-input').type(\"James\"); // Enter Middle Name\ncy.get(':nth-child(3) > :nth-child(2) > .oxd-input').type(\"Parker\"); // Enter Last Name\ncy.get('.orangehrm-full-width-grid > div > div > div:nth-child(2) > input').invoke('val').then(value => {\n  employeeId = value;\n  cy.log(`Employee ID: ${employeeId}`);\n  cy.wrap(employeeId).as('employeeId');\n});\ncy.get('.oxd-switch-input').click(); // Toggle for Create Login Details\ncy.get(':nth-child(4) > .oxd-grid-2 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Ethan123\"); // Enter Username\ncy.get('.user-password-cell > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Sunbeam1\"); // Enter Password\ncy.get('.oxd-grid-2 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Sunbeam1\"); // Enter Confirm Password\ncy.get('.orangehrm-employee-image > div > div:nth-child(2) > input').selectFile(\"cypress/fixtures/profile.png\", {\n  force: true\n});\ncy.get('.oxd-button--secondary').click(); // Click on Save button\ncy.wait(10000);\ncy.get('li.oxd-topbar-body-nav-tab.--visited').click();\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-autocomplete-wrapper > .oxd-autocomplete-text-input > input').type(\"Ethan\"); //Enter name\ncy.wait(2000);\ncy.get('.oxd-autocomplete-option') //Click on Auto Completion\n.click();\ncy.wait(2000);\ncy.get('.oxd-form-actions > .oxd-button--secondary').click(); //Click on search button\ncy.wait(2000);\ncy.get('@employeeId').then(employeeId => {\n  cy.log(`Outside: ${employeeId}`);\n  cy.get('.oxd-table-card > .oxd-table-row > :nth-child(2) > div').should(\"have.text\", employeeId);\n});\ncy.get('.oxd-table-card > .oxd-table-row > :nth-child(3) > div').should(\"have.text\", \"Ethan James\");\ncy.get('.oxd-table-card > .oxd-table-row > :nth-child(4) > div').should(\"have.text\", \"Parker\");",
+              "code": "cy.get(':nth-child(2) > .oxd-main-menu-item').click(); // Go to PIM\ncy.get('.oxd-topbar-body-nav > ul > :nth-child(3)').click(); // Click on Add Employee in top Navbar\ncy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').type(\"Ethan\"); //Enter First Name\ncy.get(':nth-child(2) > :nth-child(2) > .oxd-input').type(\"James\"); // Enter Middle Name\ncy.get(':nth-child(3) > :nth-child(2) > .oxd-input').type(\"Parker\"); // Enter Last Name\ncy.get('.orangehrm-full-width-grid > div > div > div:nth-child(2) > input').invoke('val').then(value => {\n  employeeId = value;\n  cy.log(`Employee ID: ${employeeId}`);\n  cy.wrap(employeeId).as('employeeId');\n});\ncy.get('.oxd-switch-input').click(); // Toggle for Create Login Details\ncy.get(':nth-child(4) > .oxd-grid-2 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Ethan123\"); // Enter Username\ncy.get('.user-password-cell > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Sunbeam1\"); // Enter Password\ncy.get('.oxd-grid-2 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type(\"Sunbeam1\"); // Enter Confirm Password\ncy.get('.orangehrm-employee-image > div > div:nth-child(2) > input').selectFile(\"cypress/fixtures/profile.png\", {\n  force: true\n});\ncy.get('.oxd-button--secondary').click(); // Click on Save button\ncy.log(\"Input Date of Birth\");\ncy.wait(10000);\ncy.scrollTo(0, 200);\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click(); //Open calendar\ncy.get('.oxd-calendar-selector-month').click();\ncy.get('.oxd-calendar-dropdown > :nth-child(1)').click(); //Month January Selected\ncy.get('.oxd-calendar-selector-year').click();\ncy.contains('1995').click(); //Year 1995 Selected\ncy.get(':nth-child(7) > .oxd-calendar-date').click(); //Date 7 Selected\ncy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click(); //Save data\n//Assertion for date of birth\ncy.scrollTo(0, 200);\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click();\ncy.get('.oxd-calendar-selector-month-selected > .oxd-text').should(\"have.text\", \"January\");\ncy.get('.oxd-calendar-selector-year-selected > .oxd-text').should(\"have.text\", \"1995\");\ncy.get('.--selected').should(\"have.text\", \"7\");\ncy.wait(10000);\ncy.get('li.oxd-topbar-body-nav-tab.--visited').click();\ncy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-autocomplete-wrapper > .oxd-autocomplete-text-input > input').type(\"Ethan\"); //Enter name\ncy.wait(2000);\ncy.get('.oxd-autocomplete-option') //Click on Auto Completion\n.click();\ncy.wait(2000);\ncy.get('.oxd-form-actions > .oxd-button--secondary').click(); //Click on search button\ncy.wait(2000);\ncy.get('@employeeId').then(employeeId => {\n  cy.log(`Outside: ${employeeId}`);\n  cy.get('.oxd-table-card > .oxd-table-row > :nth-child(2) > div').should(\"have.text\", employeeId);\n});\ncy.get('.oxd-table-card > .oxd-table-row > :nth-child(3) > div').should(\"have.text\", \"Ethan James\");\ncy.get('.oxd-table-card > .oxd-table-row > :nth-child(4) > div').should(\"have.text\", \"Parker\");",
               "err": {},
-              "uuid": "1a994530-747a-4e30-a5c8-b9cbbe2ab612",
-              "parentUUID": "954b1b6b-569d-49d0-b9fc-a848fc6ac84c",
+              "uuid": "d0328be5-86a2-402c-b96a-ffa08370d06f",
+              "parentUUID": "eb11676a-931c-4105-b8d1-0d756d1f4660",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "1a994530-747a-4e30-a5c8-b9cbbe2ab612"
+            "d0328be5-86a2-402c-b96a-ffa08370d06f"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 32822,
+          "duration": 45606,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
