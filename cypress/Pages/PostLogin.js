@@ -7,6 +7,7 @@ export class PostLogin{
     //Element locators
     admin_menu = ':nth-child(1) > .oxd-main-menu-item'
     my_info_menu = ':nth-child(3) > .oxd-main-menu-item'
+    pim_menu = ':nth-child(2) > .oxd-main-menu-item'
     user_dropdown = '.oxd-userdropdown-tab'
     user_dropdown_name = '.oxd-userdropdown-name'
     logoutMenu = 'Logout'
@@ -19,6 +20,10 @@ export class PostLogin{
 
     clickMyInfoMenu(){
         cy.get(this.my_info_menu).click()
+    }
+
+    clickPimMenu(){
+        cy.get(this.pim_menu).click()
     }
 
     clickUserDropdown(){
