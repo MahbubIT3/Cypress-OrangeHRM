@@ -78,6 +78,7 @@ describe("PIM Module",()=>{
         adminPage.selectDate()   //Date 7 Selected
         adminPage.clickEmployeeProfileSaveButton()    //Save data
         
+        adminPage.checkToaster()
         //Assertion for date of birth
         cy.scrollTo(0,200)
         adminPage.clickCalendar()
@@ -93,7 +94,7 @@ describe("PIM Module",()=>{
 
         adminPage.clickAutocompleteOption()
         cy.wait(2000)    
-        
+
         adminPage.clickSearchButton()
         cy.wait(2000)
         

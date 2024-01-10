@@ -30,6 +30,7 @@ export class AdminPage{
     employeeIdOnList = '.oxd-table-card > .oxd-table-row > :nth-child(2) > div'
     employeeNameOnList = '.oxd-table-card > .oxd-table-row > :nth-child(3) > div'
     employeeLastnameOnList = '.oxd-table-card > .oxd-table-row > :nth-child(4) > div'
+    toaster = '.oxd-text--toast-title'
     //General variables
     expected_language = 'English (United States)'
     admin_url = 'https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers'
@@ -165,6 +166,10 @@ export class AdminPage{
             .click()
      }
 
+     checkToaster(){
+        cy.get(this.toaster)
+            .should('have.text','Success')
+     }
      checkEmployeeBirthMonth(){
         cy.get(this.month_dropdown+"-selected > .oxd-text")
             .should("have.text",this.selected_month)
